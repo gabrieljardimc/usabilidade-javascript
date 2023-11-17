@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Move</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta charset="utf-8"/>
+	</head>
+	<body onKeyDown="keyPress(event)">
+		<div 
+			id='caixa' 
+			style="position: absolute; display: block; width: 100px; height: 100px; background-color: blue"
+		/>
+		
+		<script language="javascript">			
+			var caixa = document.getElementById('caixa');
+			
+			var top_position = 0;
+			var left_position= 0;
+			var step = 10;
+			
+			function keyPress(event) {
+				const key = event.key.toLowerCase();
+				switch (key) {
+					case 'arrowup':
+					case 'w':
+						up();
+						break;
+					case 'arrowdown':
+					case 's':
+						down();
+						break;
+					case 'arrowleft':
+					case 'a':
+						left();
+						break;
+					case 'arrowright':
+					case 'd':
+						right();
+						break;
+				}
+			}
+			
+			function down() {
+				if (top_position + step <= window.innerHeight - caixa.clientHeight) {
+					top_position += step;
+					caixa.style.marginTop = `${top_position}px`;
+				}
+			}
+			
+			function up() {
+				if (top_position - step >= 0) {
+					top_position -= step;
+					caixa.style.marginTop = `${top_position}px`;
+				}
+			}
+
+			function left() {
+				if (left_position - step >= 0) {
+					left_position -= step;
+					caixa.style.marginLeft = `${left_position}px`;
+				}
+			}
+
+			function right() {
+				if (left_position + step <= window.innerWidth - caixa.clientWidth) {
+					left_position += step;
+					caixa.style.marginLeft = `${left_position}px`;
+				}
+			}
+			
+		</script>
+	</body>
+</html>
